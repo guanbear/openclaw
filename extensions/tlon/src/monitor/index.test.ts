@@ -66,10 +66,10 @@ vi.mock("../urbit/auth.js", () => ({
 }));
 
 vi.mock("../urbit/sse-client.js", () => ({
-  UrbitSSEClient: vi.fn((...args: unknown[]) => {
+  UrbitSSEClient: function MockUrbitSSEClient(this: unknown, ...args: unknown[]) {
     sseClientCtorMock(...args);
     return sseClientInstanceMock;
-  }),
+  },
 }));
 
 vi.mock("../settings.js", async (importOriginal) => {
